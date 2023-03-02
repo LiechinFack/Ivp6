@@ -57,10 +57,13 @@ setuid 65535
 stacksize 6291456
 flush
 auth strong
+
 users phuc:CL:phucMAI9 $(awk -F "/" 'BEGIN{ORS="";} {print $1 ":CL:" $2 " "}' ${WORKDATA})
+
 allow phuc
 proxy -4 -n -a -p9998 -i"${IP4}" -e"${IP4}"
 flush
+
 $(awk -F "/" '{print "auth strong\n" \
 "allow " $1 "\n" \
 "proxy -6 -n -a -p" $4 " -i" $3 " -e"$5"\n" \
@@ -170,3 +173,5 @@ upload_proxy
 #systemctl enable docker
 #docker pull traffmonetizer/cli:latest
 #docker run -i --name tm traffmonetizer/cli start accept --token qUNLnkI3hOgRdWY0ePBPs4YaUAZtqDxeI0I8F7lY7Io=
+
+
